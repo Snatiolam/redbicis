@@ -1,5 +1,10 @@
 # Proyecto redbicis
 
+## Diagramas de contexto
+
+![image](https://user-images.githubusercontent.com/53226925/234002241-09f5aa2e-a065-4c1f-ae48-61e91cf183e7.png)
+![image](https://user-images.githubusercontent.com/53226925/234002327-9b16f22e-78b1-425c-9354-62c3b20d8ecb.png)
+
 ## Diagrama de componentes
 
 ![image](https://user-images.githubusercontent.com/53226925/233903067-cd8b82b6-7e2c-4c6d-926d-029aa836e850.png)
