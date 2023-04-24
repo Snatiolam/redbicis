@@ -11,3 +11,11 @@
 ## Diagrama entidad relacion
 
 ![image](https://user-images.githubusercontent.com/53226925/233899014-7f52e50f-f59d-49e9-b256-1a2135bd9a47.png)
+
+## Decision arquitectural
+
+1. Se opta por utilizar una base de datos no estructurada como AuroraDB debido a su facilidad para guardar datos de las bicicletas de forma eficiente.
+
+2. Se usa una arquitectura basada en microservicios con el fin de desacoplar muchas funcionalidades y en caso de que falle algun servicio en particular no caiga toda la aplicacion. El despligue se busca hacerlo con contenedores como docker para optimizar el uso de recursos de compute y tener un mayor control sobre que las aplicaciones funcionen en ambientes especificos y controlados. También se usará un orquestador como Kuberntes que permita tener un mejor controlor de los diferentes controladores y mejorando la disponibilidad de los servicios.
+
+3. Se crea un adaptardor adicional para la autenticacion para permitir la estandarizacion en la forma de autenticacion (En este caso google), basados en la arquitectura orientada a puertos-adaptadores, desacoplando la logica de autenticacion de la aplicacion como tal y permitiendo cambiar el adaptador cuando sea necesario.
