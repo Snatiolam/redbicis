@@ -2,7 +2,7 @@
 
 ## Diagrama de componentes
 
-![image](https://user-images.githubusercontent.com/53226925/233886630-33897311-12d6-4717-893c-d73537af21f2.png)
+![image](https://user-images.githubusercontent.com/53226925/233903067-cd8b82b6-7e2c-4c6d-926d-029aa836e850.png)
 
 ## Diagrama de secuencias
 
