@@ -17,6 +17,10 @@
 
 ![image](https://user-images.githubusercontent.com/53226925/233899014-7f52e50f-f59d-49e9-b256-1a2135bd9a47.png)
 
+## Diagrama de despliegue
+
+![image](https://user-images.githubusercontent.com/53226925/234169843-574dddeb-7a63-4419-b9f0-296efb99fc93.png)
+
 ## Decision arquitectural
 
 1. Se opta por utilizar una base de datos no estructurada como AuroraDB debido a su facilidad para guardar datos de las bicicletas de forma eficiente.
