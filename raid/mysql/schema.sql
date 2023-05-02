@@ -1,0 +1,7 @@
+CREATE TABLE Bicicleta (
+    id INT PRIMARY KEY,
+    color VARCHAR(50) NOT NULL,
+    modelo VARCHAR(50) NOT NULL,
+    lat DECIMAL(10) NOT NULL,
+    lng DECIMAL(10) NOT NULL,
+);
