@@ -2,8 +2,10 @@ const Bicicleta = require("../model/Bicicleta");
 
 exports.list = async function (req, res) {
     // hola = Bicicleta();
-    await Bicicleta.listAll();
-    res.render("bicicletas/index", { bicis: Bicicleta.allBicis });
+    // let lista = await Bicicleta.listAll();
+    // console.log("Esta es la lista:");
+    // console.log(lista);
+    res.render("bicicletas/index", { bicis: await Bicicleta.listAll() });
 };
 
 exports.apiList = function (req, res) {
@@ -12,6 +14,7 @@ exports.apiList = function (req, res) {
 
 exports.show = async function (req, res) {
     var bici = await Bicicleta.findById(req.params.id);
+    // console.log(bici);
     res.render("bicicletas/show", { bici });
 };
 
@@ -25,14 +28,15 @@ exports.create_post = async function (req, res) {
     res.redirect("/bicicletas");
 };
 
-exports.update_get = function (req, res) {
-    let bici = Bicicleta.findById(req.params.id);
+exports.update_get = async function (req, res) {
+    let bici = await Bicicleta.findById(req.params.id);
+    console.log(bici);
     res.render("bicicletas/update", { bici });
 };
 
-exports.update_post = async function (req, res) {
+exports.update_post = function (req, res) {
     var newBici = new Bicicleta(req.body.id, req.body.color, req.body.modelo, req.body.lat, req.body.lng);
-    await Bicicleta.update(req.params.id, newBici);
+    Bicicleta.update(req.params.id, newBici);
     res.redirect("/bicicletas");
 };
 

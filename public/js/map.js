@@ -14,7 +14,7 @@ $.ajax({
         // console.log(results);
         results.forEach(function (bici){
             console.log(bici);
-            L.marker(bici.ubicacion, {
+            L.marker([bici.lat, bici.lng], {
                 title: `Bicicleta Nro: ${bici.id} Modelo: ${bici.modelo}`,
             }).addTo(map);
         }) 

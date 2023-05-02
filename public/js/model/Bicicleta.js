@@ -51,24 +51,37 @@ Bicicleta.prototype.toString = function () {
 
 Bicicleta.allBicis = [];
 
-Bicicleta.listAll =  function() {
-    // console.log('Acabo de entrar a listar keys\n\n');
-    // redisClient.keys("*", function (err, keys){
-    //     console.log("Voy a empezar a iterar");
-    //     if (err) {
-    //         console.log(err);
-    //         return;
-    //     }
-    //     console.log(keys);
-    //     keys.array.forEach(element => {
-    //         console.log(element);
-    //     });
-    // });
+Bicicleta.listAll = async function() {
+    console.log("Entrando a listar");
+    list = []
+    try {
+        let resultado =  await consulta("SELECT * FROM bicicletas")
+        resultado.forEach(element => {
+            console.log(element);
+            var bici = Object.assign(Bicicleta, element);
+            list.push(new Bicicleta(element.id, element.color, element.modelo, element.lat, element.lng));
+        });
+    } catch (err) {
+        console.error(err);
+    }
+    console.log("Saliendo de listar");
+    return list;
 }
-
+function consulta(query) {
+    return new Promise((resolve, reject) => {
+        // Hace la consulta a la base de datos
+        con.query(query, (error, results, fields) => {
+          if (error) {
+            reject(error);
+          } else {
+            resolve(results);
+          }
+        });
+      });
+}
 Bicicleta.add = async function (aBici) {
     try {
-        let query = 'INSERT INTO Bicicleta SET ' + con.escape(aBici);
+        let query = 'INSERT INTO bicicletas SET ' + con.escape(aBici);
         con.query(query, (err, results, fields) => {
             console.log(results);
         });
@@ -82,13 +95,14 @@ Bicicleta.add = async function (aBici) {
 
 Bicicleta.findById = async function (aBiciId) {
     try {
+        let bici = await consulta(`SELECT * FROM bicicletas WHERE id = '${aBiciId}'`)
         // var aBici = Bicicleta.allBicis.find((x) => x.id == aBiciId);
         // var rediBici = await redisClient.get(aBiciId);
-        var rediBici = 2;
+        // var rediBici = 2;
         // console.log(rediBici);
         // if (aBici) return aBici;
-        if (rediBici) return JSON.parse(rediBici);
-        else throw new Error(`No existe una Bicicleta con el id: ${aBiciId}`);
+        if (bici) return Object.assign(Bicicleta, bici[0]);
+        else throw new Error(`No existe una Bicicleta con el id: '${aBiciId}'`);
     } catch (error) {
         console.log(error);
     }
@@ -97,14 +111,18 @@ Bicicleta.findById = async function (aBiciId) {
 
 Bicicleta.removeById = async function (aBiciId) {
     try {
-        var aBici = Bicicleta.findById(aBiciId);
-        for (let i = 0; i < Bicicleta.allBicis.length; i++) {
-            if (Bicicleta.allBicis[i].id == aBiciId) {
-                Bicicleta.allBicis.splice(i, 1);
-                break;
-            }
-        }
+        // var aBici = Bicicleta.findById(aBiciId);
+        // for (let i = 0; i < Bicicleta.allBicis.length; i++) {
+        //     if (Bicicleta.allBicis[i].id == aBiciId) {
+        //         Bicicleta.allBicis.splice(i, 1);
+        //         break;
+        //     }
+        // }
         // await redisClient.del(aBiciId);
+
+        let bici = await consulta(`DELETE FROM bicicletas WHERE id = '${aBiciId}'`)
+        console.log("Removed:");
+        console.log(bici);
     } catch (error) {
         console.log(error);
     }
@@ -112,13 +130,20 @@ Bicicleta.removeById = async function (aBiciId) {
     
 };
 
-Bicicleta.update = function (id, newBici) {
-    this.allBicis = this.allBicis.map( e => {
-        if (e.id === id) {
-            return newBici;
-        }
-        return e;
-    });
+Bicicleta.update = async function (id, newBici) {
+    try {
+        let bici = await consulta(`UPDATE bicicletas SET ` + con.escape(newBici) + ` WHERE id = '${id}'`);
+        return bici;
+    } catch (err) {
+        console.error(err);
+    }
+    
+    // this.allBicis = this.allBicis.map( e => {
+    //     if (e.id === id) {
+    //         return newBici;
+    //     }
+    //     return e;
+    // });
 }
 
 module.exports = Bicicleta;

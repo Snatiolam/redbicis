@@ -1,8 +1,17 @@
 const Bicicleta = require("../../model/Bicicleta");
 
-exports.list = function (req, res) {
+exports.list = async function (req, res) {
     // hola = Bicicleta();
-    res.json(Bicicleta.allBicis);
+    lista = await Bicicleta.listAll();
+    const listaBici = lista.map(bicicleta => {
+        // console.log(bicicleta);
+        const nuevaBici = new Bicicleta(bicicleta.id, bicicleta.color, bicicleta.modelo, bicicleta.lat, bicicleta.lng);
+        console.log(nuevaBici);
+        return nuevaBici;
+    });
+    // console.log("Api: ----");
+    // console.log(listaBici);
+    res.json(lista);
 };
 
 exports.show = function (req, res) {
