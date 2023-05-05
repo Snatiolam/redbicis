@@ -19,5 +19,6 @@ router.get('/auth/google/callback',
         });
         res.cookie('auth', token, { httpOnly: true });
         res.redirect('http://localhost:3000/');
-});
+    });
+    
 module.exports = router;

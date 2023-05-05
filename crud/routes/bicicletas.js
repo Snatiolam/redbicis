@@ -20,10 +20,16 @@ router.get('/greetme', (req, res, next) => {
     if (err) {
       console.log('error is', err);
       res.status(500).send('An error has occurred, we cannot greet you at the moment.');
+      return;
     }
-    console.log('Estoy saliendo en la autenticacion');
+
+    if (!user) {
+      res.status(401).json({ message: 'No estás autorizado para acceder a este recurso.' });
+      return;
+    }
+
+    next();
   })(req, res, next);
  }, bicicletaController.list);
-
 
 module.exports = router;

@@ -8,3 +8,5 @@ auth-ms/node_modules
 auth-ms/package-lock.json
 auth-ms/*.log
 auth-ms/*.gz
+
+.env
