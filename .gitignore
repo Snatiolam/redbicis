@@ -1,5 +1,10 @@
 # npm
-node_modules
-package-lock.json
-*.log
-*.gz
+crud/node_modules
+crud/package-lock.json
+crud/*.log
+crud/*.gz
+
+auth-ms/node_modules
+auth-ms/package-lock.json
+auth-ms/*.log
+auth-ms/*.gz

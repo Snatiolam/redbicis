@@ -30,7 +30,8 @@ var con = mysql.createConnection({
 });
 
 con.connect(function(err) {
-  if (err) throw err;
+  //if (err) throw err;
+    if (err) console.log("No se puede conectar");
   console.log("You are connected!");
 });
 // con.end();
@@ -106,7 +107,7 @@ Bicicleta.findById = async function (aBiciId) {
     } catch (error) {
         console.log(error);
     }
-    
+
 };
 
 Bicicleta.removeById = async function (aBiciId) {
@@ -126,8 +127,8 @@ Bicicleta.removeById = async function (aBiciId) {
     } catch (error) {
         console.log(error);
     }
-    
-    
+
+
 };
 
 Bicicleta.update = async function (id, newBici) {
@@ -137,7 +138,7 @@ Bicicleta.update = async function (id, newBici) {
     } catch (err) {
         console.error(err);
     }
-    
+
     // this.allBicis = this.allBicis.map( e => {
     //     if (e.id === id) {
     //         return newBici;
