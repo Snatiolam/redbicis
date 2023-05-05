@@ -5,8 +5,9 @@ exports.list = async function (req, res) {
     // let lista = await Bicicleta.listAll();
     // console.log("Esta es la lista:");
     // console.log(lista);
+
     console.log("En el controlador de lista");
-    res.render("bicicletas/index", { bicis: await Bicicleta.listAll() });
+    res.render("bicicletas/index", { bicis: await Bicicleta.listAll()});
 };
 
 exports.apiList = function (req, res) {

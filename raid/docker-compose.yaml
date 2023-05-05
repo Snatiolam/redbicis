@@ -19,35 +19,33 @@ services:
       # interval: 10s
 
   authms:
-    # image:
-    #   snatiolam/redbici2
     build:
       context: ../auth-ms
       args:
         DOCKER_BUILDKIT: 1
     env_file:
       - ../auth-ms/.env
-    depends_on:
-      mysqldb:
-        condition: service_healthy
-
     ports:
       - "5000:5000"
+    restart: always      
+
+  mapms:
+    build:
+      context: ../map-ms
+      args:
+        DOCKER_BUILDKIT: 1
+    ports:
+      - "5001:5001"
     restart: always
-      
 
   api_client:
-    # image:
-    #   snatiolam/redbici2
     build:
       context: ../crud
       args:
         DOCKER_BUILDKIT: 1
     depends_on:
       mysqldb:
-        condition: service_healthy
-      
-
+        condition: service_healthy  
     ports:
       - "3000:3000"
     restart: always

@@ -9,6 +9,11 @@ auth-ms/package-lock.json
 auth-ms/*.log
 auth-ms/*.gz
 
+map-ms/node_modules
+map-ms/package-lock.json
+map-ms/*.log
+map-ms/*.gz
+
 .env
 crud/.env
 auth-ms/.env

@@ -6,7 +6,24 @@ const bicicletaController = require("../../public/js/api/Controllers/BicicletaCo
 
 const passport = require('passport');
 
-router.get("/", bicicletaController.list);
+const autorizacion = (req, res, next) => {
+    passport.authenticate('jwt', { session: false }, (err, user, info) => {
+      if (err) {
+        console.log('error is', err);
+        res.status(500).send('An error has occurred, we cannot greet you at the moment.');
+        return;
+      }
+  
+      if (!user) {
+        res.status(401).json({ message: 'No estás autorizado para acceder a este recurso.' });
+        return;
+      }
+  
+      next();
+    })(req, res, next);
+  }
+
+router.get("/", autorizacion, bicicletaController.list);
 router.get("/:id/show", bicicletaController.show);
 router.post("/", bicicletaController.create);
 router.post("/:id/update", bicicletaController.update);
