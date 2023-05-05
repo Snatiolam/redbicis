@@ -17,19 +17,36 @@ services:
       # timeout: 20s
       # retries: 10
       # interval: 10s
+
+  authms:
+    # image:
+    #   snatiolam/redbici2
+    build:
+      context: ../auth-ms
+      args:
+        DOCKER_BUILDKIT: 1
+    env_file:
+      - ../auth-ms/.env
+    depends_on:
+      mysqldb:
+        condition: service_healthy
+
+    ports:
+      - "5000:5000"
+    restart: always
       
 
   api_client:
     # image:
     #   snatiolam/redbici2
     build:
-      context: ..
-      dockerfile: ./raid/crud/Dockerfile
+      context: ../crud
       args:
         DOCKER_BUILDKIT: 1
     depends_on:
       mysqldb:
         condition: service_healthy
+      
 
     ports:
       - "3000:3000"

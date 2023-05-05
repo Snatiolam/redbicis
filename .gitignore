@@ -10,3 +10,5 @@ auth-ms/*.log
 auth-ms/*.gz
 
 .env
+crud/.env
+auth-ms/.env
