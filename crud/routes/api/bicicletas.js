@@ -4,6 +4,7 @@ var router = express.Router();
 // const bicicletaController = require("../../public/js/Controllers/BicicletaController");
 const bicicletaController = require("../../public/js/api/Controllers/BicicletaController");
 
+const passport = require('passport');
 
 router.get("/", bicicletaController.list);
 router.get("/:id/show", bicicletaController.show);
