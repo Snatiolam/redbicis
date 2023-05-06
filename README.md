@@ -19,7 +19,7 @@
 
 ## Diagrama de despliegue
 
-![image](https://user-images.githubusercontent.com/53226925/234169843-574dddeb-7a63-4419-b9f0-296efb99fc93.png)
+![image](https://user-images.githubusercontent.com/53226925/236635721-a259d3de-19d2-4ce1-8774-7618f4bd3106.png)
 
 ## Decision arquitectural
 
