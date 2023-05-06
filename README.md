@@ -7,7 +7,7 @@
 
 ## Diagrama de componentes
 
-![image](https://user-images.githubusercontent.com/53226925/233903067-cd8b82b6-7e2c-4c6d-926d-029aa836e850.png)
+![image](https://user-images.githubusercontent.com/53226925/236634936-94b0b622-bf10-43f5-8675-33077b0e056d.png)
 
 ## Diagrama de secuencias
 
@@ -19,11 +19,11 @@
 
 ## Diagrama de despliegue
 
-![image](https://user-images.githubusercontent.com/53226925/234169843-574dddeb-7a63-4419-b9f0-296efb99fc93.png)
+![image](https://user-images.githubusercontent.com/53226925/236635721-a259d3de-19d2-4ce1-8774-7618f4bd3106.png)
 
 ## Decision arquitectural
 
-1. Se opta por utilizar una base de datos no estructurada como AuroraDB debido a su facilidad para guardar datos de las bicicletas de forma eficiente.
+1. Se opta por utilizar para persistencia mysql ya que es una base de datos ampliemento soportada y mantenida por muchos desarrolladores. Es compatible con la mayoria de lenguajes de programacion facilitando la integracion con los microservicios. Se puede escalar facilmente tanto vertical como horizontalmenete.
 
 2. Se usa una arquitectura basada en microservicios con el fin de desacoplar muchas funcionalidades y en caso de que falle algun servicio en particular no caiga toda la aplicacion. El despligue se busca hacerlo con contenedores como docker para optimizar el uso de recursos de compute y tener un mayor control sobre que las aplicaciones funcionen en ambientes especificos y controlados. También se usará un orquestador como Kuberntes que permita tener un mejor controlor de los diferentes controladores y mejorando la disponibilidad de los servicios.
 
