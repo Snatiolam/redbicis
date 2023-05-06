@@ -18,7 +18,7 @@ router.get('/auth/google/callback',
             expiresIn: 60 * 60,
         });
         res.cookie('auth', token, { httpOnly: true });
-        res.redirect('http://localhost:3000/');
+        res.redirect('http://localhost:80/');
     });
     
 module.exports = router;

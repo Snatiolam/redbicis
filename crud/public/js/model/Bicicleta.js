@@ -53,21 +53,22 @@ Bicicleta.prototype.toString = function () {
 Bicicleta.allBicis = [];
 
 Bicicleta.listAll = async function() {
-    console.log("Entrando a listar");
+    // console.log("Entrando a listar");
     list = []
     try {
         let resultado =  await consulta("SELECT * FROM bicicletas")
         resultado.forEach(element => {
-            console.log(element);
+            // console.log(element);
             var bici = Object.assign(Bicicleta, element);
             list.push(new Bicicleta(element.id, element.color, element.modelo, element.lat, element.lng));
         });
     } catch (err) {
         console.error(err);
     }
-    console.log("Saliendo de listar");
+    // console.log("Saliendo de listar");
     return list;
 }
+
 function consulta(query) {
     return new Promise((resolve, reject) => {
         // Hace la consulta a la base de datos
@@ -80,14 +81,15 @@ function consulta(query) {
         });
       });
 }
+
 Bicicleta.add = async function (aBici) {
     try {
         let query = 'INSERT INTO bicicletas SET ' + con.escape(aBici);
         con.query(query, (err, results, fields) => {
-            console.log(results);
+            // console.log(results);
         });
         // await redisClient.set(aBici.id, JSON.stringify(aBici));
-        console.log(query);
+        // console.log(query);
     } catch (error) {
         console.log(error);
     }
@@ -122,8 +124,8 @@ Bicicleta.removeById = async function (aBiciId) {
         // await redisClient.del(aBiciId);
 
         let bici = await consulta(`DELETE FROM bicicletas WHERE id = '${aBiciId}'`)
-        console.log("Removed:");
-        console.log(bici);
+        // console.log("Removed:");
+        // console.log(bici);
     } catch (error) {
         console.log(error);
     }

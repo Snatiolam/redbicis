@@ -1,18 +1,16 @@
 # npm
-crud/node_modules
-crud/package-lock.json
-crud/*.log
-crud/*.gz
 
-auth-ms/node_modules
-auth-ms/package-lock.json
-auth-ms/*.log
-auth-ms/*.gz
+**/node_modules
+# **/package-lock.json
+**/*.log
+**/*.gz
+**/.vscode
 
-map-ms/node_modules
-map-ms/package-lock.json
-map-ms/*.log
-map-ms/*.gz
+redbici-front/node_modules
+# redbici-front/package-lock.json
+redbici-front/*.log
+redbici-front/*.gz
+redbici-front/.vscode/*
 
 .env
 crud/.env

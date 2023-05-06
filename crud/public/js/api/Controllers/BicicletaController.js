@@ -2,11 +2,12 @@ const Bicicleta = require("../../model/Bicicleta");
 
 exports.list = async function (req, res) {
     // hola = Bicicleta();
+    console.log("Entrando a listar bicicletas (api)");
     lista = await Bicicleta.listAll();
     const listaBici = lista.map(bicicleta => {
         // console.log(bicicleta);
         const nuevaBici = new Bicicleta(bicicleta.id, bicicleta.color, bicicleta.modelo, bicicleta.lat, bicicleta.lng);
-        console.log(nuevaBici);
+        // console.log(nuevaBici);
         return nuevaBici;
     });
     // console.log("Api: ----");
@@ -14,29 +15,32 @@ exports.list = async function (req, res) {
     res.json(lista);
 };
 
-exports.show = function (req, res) {
-    var bici = Bicicleta.findById(req.params.id);
-    res.json(bici);
+exports.show = async function (req, res) {
+    console.log("Entrando a show bicicleta (api)");
+    var bicicleta = await Bicicleta.findById(req.params.id);
+    // Esta devolviendo Function Bicicleta y toca convertirlo a objeto
+    const nuevaBici = new Bicicleta(bicicleta.id, bicicleta.color, bicicleta.modelo, bicicleta.lat, bicicleta.lng);
+    //console.log(nuevaBici);
+    res.json(nuevaBici);
 };
 
-exports.create = function (req, res) {
-    console.log(req.body);
-    var bici = new Bicicleta(req.body.id, req.body.color, req.body.modelo);
-    bici.ubicacion = [req.body.lat, req.body.lng];
-    Bicicleta.add(bici);
+exports.create = async function (req, res) {
+    console.log("Entrando a create bicicleta (api)");
+    // console.log(req);
+    var bici = new Bicicleta(req.body.id, req.body.color, req.body.modelo, req.body.lat, req.body.lng);
+    await Bicicleta.add(bici);
     res.json(bici.id);
 };
 
-exports.update = function (req, res) {
-    var newBici = new Bicicleta(req.body.id, req.body.color, req.body.modelo);
-    newBici.ubicacion = [req.body.lat, req.body.lng];
-    Bicicleta.update(req.params.id, newBici);
+exports.update = async function (req, res) {
+    var newBici = new Bicicleta(req.body.id, req.body.color, req.body.modelo, req.body.lat, req.body.lng);
+    await Bicicleta.update(req.params.id, newBici);
     res.json(newBici.id);
 };
 
-
-exports.delete = function (req, res) {
-    Bicicleta.removeById(req.params.id);
-    res.sendStatus(200);
+exports.delete = async function (req, res) {
+    console.log("Entrando a borrar bicicleta (api)");
+    await Bicicleta.removeById(req.params.id);
+    res.sendStatus(204);
     //res.redirect("/bicicletas");
 };

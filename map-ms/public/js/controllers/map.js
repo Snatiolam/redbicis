@@ -5,7 +5,7 @@ exports.mapa = function (req, res) {
     // let lista = await Bicicleta.listAll();
     // console.log("Esta es la lista:");
     // console.log(lista);
-    console.log(req);
+    // console.log(req);
     console.log("En el controlador de mapa");
     res.render("index");
 };

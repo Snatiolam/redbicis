@@ -38,6 +38,14 @@ services:
       - "5001:5001"
     restart: always
 
+  frontend:
+    build:
+      context: ../redbici-front
+      args:
+        DOCKER_BUILDKIT: 1 
+    ports:
+      - "80:80"
+
   api_client:
     build:
       context: ../crud
